@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\doctor\DoctorController;
 use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\patient\PatientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,7 @@ use Illuminate\Support\Facades\Route;
  * frontend route
  */
 Route::get('/',[FrontendController::class, 'index'])->name('home.index');
+Route::get('login',[FrontendController::class, 'login'])->name('home.login');
 
 
 
@@ -28,3 +31,17 @@ Route::get('/',[FrontendController::class, 'index'])->name('home.index');
  * admin controller
  */
 Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
+
+
+
+/**
+ * doctor controller
+ */
+Route::get('doctor-reg', [DoctorController::class, 'showRegPage'])->name('doctor.register');
+
+
+
+/**
+ * patient controller
+ */
+Route::get('patient-reg', [PatientController::class, 'showRegPage'])->name('patient.reg');
