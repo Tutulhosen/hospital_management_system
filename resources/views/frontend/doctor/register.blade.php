@@ -16,9 +16,9 @@
                 <a href="{{route('patient.reg')}}">Not a Doctor?</a>
               </div>
               <br>
-              
+              @include('validate.validate')
               <!-- Register Form -->
-              <form action="" method="POST">
+              <form action="{{route('register.doctor')}}" method="POST">
                 @csrf
                 <div class="form-group form-focus">
                   <label class="focus-label">Name</label>
@@ -41,7 +41,7 @@
                   <label class="focus-label">Speciality</label>
                   <select class="form-control" name="speciality" id="">
                     <option value="">--select--</option>
-                    <option value=""></option>
+                    <option value="n">ffff</option>
                 </select>
                 </div>
                 <div class="form-group form-focus">
@@ -49,7 +49,7 @@
                   <label class="focus-label">Room No</label>
                   <select class="form-control" name="room" id="">
                     <option value="">--select--</option>
-                    <option value="">102</option>
+                    <option value="v">102</option>
                 </select>
                 </div>
                 <div class="text-right">

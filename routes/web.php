@@ -5,6 +5,7 @@ use App\Http\Controllers\doctor\DoctorController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\patient\PatientController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\VarDumper\Caster\DoctrineCaster;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.in
  * doctor controller
  */
 Route::get('doctor-reg', [DoctorController::class, 'showRegPage'])->name('doctor.register');
+Route::post('doctor-reg', [DoctorController::class, 'doctorReg'])->name('register.doctor');
 
 
 
@@ -45,3 +47,4 @@ Route::get('doctor-reg', [DoctorController::class, 'showRegPage'])->name('doctor
  * patient controller
  */
 Route::get('patient-reg', [PatientController::class, 'showRegPage'])->name('patient.reg');
+// Route::post('patient-register', [PatientController::class, 'patientReg'])->name('patient.register');
