@@ -30,15 +30,19 @@ Route::post('login', [loginController::class, 'logIn'])->name('user.login');
 
 
 
+
 /**
- * admin controller
+ * admin route
  */
 Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
+Route::get('admin-login', [AdminController::class, 'login'])->name('admin.login');
+Route::post('admin-logedin', [AdminController::class, 'adminLogin'])->name('admin.logedin');
+
 
 
 
 /**
- * doctor controller
+ * doctor route
  */
 Route::get('doctor-reg', [DoctorController::class, 'showRegPage'])->name('doctor.register');
 Route::post('doctor-reg', [DoctorController::class, 'doctorReg'])->name('register.doctor');
@@ -46,7 +50,7 @@ Route::post('doctor-reg', [DoctorController::class, 'doctorReg'])->name('registe
 
 
 /**
- * patient controller
+ * patient route
  */
 Route::get('patient-reg', [PatientController::class, 'showRegPage'])->name('patient.reg');
 // Route::post('patient-register', [PatientController::class, 'patientReg'])->name('patient.register');
