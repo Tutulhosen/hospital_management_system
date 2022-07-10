@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\doctor\DoctorController;
 use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\frontend\loginController;
 use App\Http\Controllers\patient\PatientController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\VarDumper\Caster\DoctrineCaster;
@@ -23,6 +24,7 @@ use Symfony\Component\VarDumper\Caster\DoctrineCaster;
  */
 Route::get('/',[FrontendController::class, 'index'])->name('home.index');
 Route::get('login',[FrontendController::class, 'login'])->name('home.login');
+Route::post('login', [loginController::class, 'logIn'])->name('user.login');
 
 
 

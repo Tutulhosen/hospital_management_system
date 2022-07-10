@@ -22,15 +22,15 @@
                 @csrf
                 <div class="form-group form-focus">
                   <label class="focus-label">Name</label>
-                  <input name="name" type="text" class="form-control floating">
+                  <input name="name" type="text" value="{{old('name')}}" class="form-control floating">
                 </div>
                 <div class="form-group form-focus">
                   <label class="focus-label">Your Email</label>
-                  <input name="email" type="text" class="form-control floating">
+                  <input name="email" type="text" value="{{old('email')}}" class="form-control floating">
                 </div>
                 <div class="form-group form-focus">
                   <label class="focus-label">Your Mobile</label>
-                  <input name="cell" type="text" class="form-control floating">
+                  <input name="cell" type="text" value="{{old('cell')}}" class="form-control floating">
                 </div>
                 <div class="form-group form-focus">
                   <label class="focus-label">Create Password</label>

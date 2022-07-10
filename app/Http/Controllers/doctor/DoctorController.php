@@ -5,6 +5,7 @@ namespace App\Http\Controllers\doctor;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
@@ -24,8 +25,8 @@ class DoctorController extends Controller
     {
        $this->validate($request, [
         'name'                  => 'required',
-        'email'                 => 'required',
-        'cell'                  => 'required',
+        'email'                 => 'required|unique:doctors',
+        'cell'                  => 'required|unique:doctors',
         'password'              => 'required',
         'speciality'            => 'required',
         'room'                  => 'required',
@@ -44,6 +45,8 @@ class DoctorController extends Controller
 
 
     }
+
+    
 
 
 

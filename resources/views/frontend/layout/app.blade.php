@@ -8,7 +8,7 @@
 
   <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
-  <title>One Health - Medical Center HTML5 Template</title>
+  <title>One Health - Medical Center </title>
 
   <link rel="stylesheet" href="{{url('frontend/assets/css/maicons.css')}}">
 
