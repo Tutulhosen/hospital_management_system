@@ -47,6 +47,8 @@
                             <a href="#">
                                 <div class="media">
                                     <span class="avatar avatar-sm">
+
+
                                         <img class="avatar-img rounded-circle" alt="User Image" src="admin/assets/img/doctors/doctor-thumb-01.jpg">
                                     </span>
                                     <div class="media-body">
@@ -115,13 +117,16 @@
                         <img src="admin/assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
                     </div>
                     <div class="user-text">
-                        <h6>Ryan Taylor</h6>
-                        <p class="text-muted mb-0">Administrator</p>
+                        @if (Auth::guard('doctor')->check())
+                        <h6>{{Auth::guard('doctor')->user()->name;}}</h6>
+                        <p class="text-muted mb-0">{{Auth::guard('doctor')->user()->speciality;}}</p>
+                        @endif
+                        
                     </div>
                 </div>
                 <a class="dropdown-item" href="profile.html">My Profile</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
-                <a class="dropdown-item" href="login.html">Logout</a>
+                <a class="dropdown-item" href="{{route('doctor.logout')}}">Logout</a>
             </div>
         </li>
         <!-- /User Menu -->

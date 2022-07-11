@@ -5,7 +5,7 @@
     <div class="container-fluid">
         
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-8 offset-md-2"><br>
                 
                 <!-- Login Tab Content -->
                 <div class="account-content">
@@ -13,18 +13,18 @@
                        
                         <div class="col-md-12 col-lg-6 login-right">
                             <div class="login-header">
-                                <h3>Login <span>Doccure</span></h3>
+                                <h3>Login <span style="color:aqua;">One</span><span>-Health</span></h3>
                             </div>
                             @include('validate.validate')
                             <form action="{{route('user.login')}}" method="POST">
                                 @csrf
                                 <div class="form-group form-focus">
-                                    <input name="email" type="email" value="{{old('email')}}" class="form-control floating">
                                     <label class="focus-label">Email</label>
+                                    <input name="email" type="email" value="{{old('email')}}" class="form-control floating">
                                 </div>
                                 <div class="form-group form-focus">
-                                    <input name="password" type="password" class="form-control floating">
                                     <label class="focus-label">Password</label>
+                                    <input name="password" type="password" class="form-control floating">
                                 </div>
                                 <div class="text-right">
                                     <a class="forgot-link" href="">Forgot Password ?</a>
@@ -55,4 +55,5 @@
     </div>
 
 </div>	
+<br>
 @endsection

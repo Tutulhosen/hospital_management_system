@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -14,6 +15,7 @@ class AdminController extends Controller
 
      public function index()
      {
+
         return view('admin.index');
      }
 
@@ -38,6 +40,11 @@ class AdminController extends Controller
          ]);
 
          if (Auth::guard('adminUser')->attempt([
+            'email'              =>$request->email,
+            'password'           =>$request->password,
+         ])) {
+            return redirect()->route('admin.index');
+         }elseif (Auth::guard('doctor')->attempt([
             'email'              =>$request->email,
             'password'           =>$request->password,
          ])) {

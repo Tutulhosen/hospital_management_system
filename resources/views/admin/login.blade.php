@@ -5,7 +5,7 @@
         <div class="container">
             <div class="loginbox">
                 <div class="login-left">
-                    <a class="navbar-brand" href="{{route('home.index')}}"><span class="text-light">One</span>-Health</a>
+                    <a class="navbar-brand" href=""><span class="text-light">One</span>-Health</a>
                 </div>
                 <div class="login-right">
                     <div class="login-right-wrap">
@@ -20,7 +20,7 @@
                                 <input name="email" class="form-control" value="{{old('email')}}" type="text" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <input name="password" class="form-control" type="text" placeholder="Password">
+                                <input name="password" class="form-control" type="password" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary btn-block" type="submit">Login</button>
