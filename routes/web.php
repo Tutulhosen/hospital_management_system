@@ -38,8 +38,8 @@ Route::post('login', [loginController::class, 'logIn'])->name('user.login')->mid
 /**
  * admin route
  */
-Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index')->middleware('doctor');
-Route::get('admin-login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index')->middleware(['doctor', 'admin']);
+Route::get('admin-login', [AdminController::class, 'login'])->name('admin.login')->middleware('admin.redirect');
 Route::post('admin-logedin', [AdminController::class, 'adminLogin'])->name('admin.logedin');
 
 
