@@ -121,6 +121,10 @@
                         <h6>{{Auth::guard('doctor')->user()->name;}}</h6>
                         <p class="text-muted mb-0">{{Auth::guard('doctor')->user()->speciality;}}</p>
                         @endif
+                        @if (Auth::guard('adminUser')->check())
+                        <h6>{{Auth::guard('adminUser')->user()->name;}}</h6>
+                        <p class="text-muted mb-0">{{Auth::guard('adminUser')->user()->cell;}}</p> 
+                        @endif
                         
                     </div>
                 </div>

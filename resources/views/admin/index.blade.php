@@ -7,12 +7,15 @@
         
         <!-- Page Header -->
 
-         @include('admin.layout.page-header')
+        @include('admin.layout.page-header')
         <!-- /Page Header -->
+        <!-- Sidebar -->
+
+        <!-- /Sidebar -->
 
         {{-- dashboard counter  --}}
         @include('admin.layout.dash-count')
-        @if (Auth::guard('adminUser')!=false)
+        @if (Auth::guard('adminUser')!=false )
             {{-- doctor and patient list  --}}
         @include('admin.layout.list')
         @endif
