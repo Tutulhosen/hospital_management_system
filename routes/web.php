@@ -47,9 +47,13 @@ Route::post('login', [loginController::class, 'logIn'])->name('user.login')->mid
 
 // some problem is unsolved in here
 Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
-
 Route::get('admin-login', [AdminController::class, 'login'])->name('admin.login')->middleware(['admin.redirect','doctor.redirect']);
 Route::post('admin-logedin', [AdminController::class, 'adminLogin'])->name('admin.logedin');
+Route::get('admin-user', [AdminController::class, 'showCreatePage'])->name('adminuser.index');
+Route::post('admin-user', [AdminController::class, 'create'])->name('admin.user.create');
+Route::get('admin-user-delete/{id}', [AdminController::class, 'destroy'])->name('admin.user.delete');
+Route::get('admin-user-edit/{id}', [AdminController::class, 'edit'])->name('admin.user.edit');
+Route::post('admin-user-edit/{id}', [AdminController::class, 'update'])->name('admin.user.update');
 
 //admin permission route
 Route::get('permission', [PermissionController::class, 'index'])->name('admin.permission');

@@ -5,7 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AdminUser;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -58,6 +61,88 @@ class AdminController extends Controller
       {
          Auth::guard('adminUser')->logout();
          return redirect()->route('admin.login');
+      }
+
+
+
+      /**
+       * show adminuser add apge
+       */
+      public function showCreatePage()
+      {
+         $role_data= Role::latest()->get();
+         $admin_user_data=AdminUser::latest()->get();
+         $form_type='add';
+         return view('admin.adminPanel.index', compact('role_data', 'admin_user_data','form_type'));
+      }
+
+      /**
+       * show adminuser edit apge
+       */
+      public function edit($id)
+      {
+         $edit_id= AdminUser::findOrFail($id);
+         $role_data= Role::latest()->get();
+         $admin_user_data=AdminUser::latest()->get();
+         $form_type='edit';
+         return view('admin.adminPanel.index', compact('role_data', 'admin_user_data','edit_id', 'form_type'));
+      }
+
+      /**
+       * create a adminuser data
+       */
+      public function create(Request $request)
+      {
+         $this->validate($request, [
+            'name'                  =>'required',
+            'email'                 =>'required|unique:admin_users',
+            'cell'                  =>'required|unique:admin_users',
+            'username'              =>'required|unique:admin_users',
+         ]);
+         AdminUser::create([
+            'name'                     =>$request->name,
+            'email'                    =>$request->email,
+            'cell'                     =>$request->cell,
+            'username'                 =>$request->username,
+            'role_id'                  =>$request->role,
+            'password'                 =>Hash::make('123456789')
+         ]);
+         return back()->with('success', 'successfully add a user data');
+      }
+
+
+      /**
+       * delete a admin data
+       */
+      public function destroy($id)
+      {
+         $delete_id= AdminUser::findOrFail($id);
+         $delete_id->delete();
+         return back()->with('success-mid', 'Admin data is Deleted');
+      }
+
+      /**
+       * update admin User id
+       */
+      public function update(Request $request, $id)
+      {
+         $this->validate($request, [
+            'name'                  =>'required',
+            'email'                 =>'required',
+            'cell'                  =>'required',
+            'username'              =>'required',           
+         ]);
+
+         $update_id= AdminUser::findOrFail($id);
+         $update_id->update([
+            'name'                     =>$request->name,
+            'email'                    =>$request->email,
+            'cell'                     =>$request->cell,
+            'username'                 =>$request->username,
+            'role_id'                  =>$request->role,
+            'password'                 =>Hash::make('123456789')
+         ]);
+         return redirect()->route('adminuser.index')->with('success-mid', 'Successfully update user data');
       }
 
 

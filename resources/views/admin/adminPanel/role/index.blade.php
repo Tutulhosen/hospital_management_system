@@ -51,10 +51,15 @@
         
                                     </td>
                                     <td>{{$role->created_at->diffForhumans()}}</td>
+  
                                     <td>
                                         <a class="btn btn-sm btn-warning" href="{{route('admin.role.edit', $role->id)}}"><i class="fa fa-edit"></i></a>
+                                        @if ($role->name!='Admin')
                                         <a class="btn btn-sm btn-danger" href="{{route('admin.role.delete', $role->id)}}"><i class="fa fa-trash"></i></a>
+                                        @endif
                                     </td>
+
+                                    
                                 </tr>
                                 @empty
                                     <tr>

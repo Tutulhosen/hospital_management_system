@@ -38,7 +38,7 @@
                 <li class="submenu">
                     <a href=""><i class="fe fe-document"></i> <span> Admin Panel</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="">Our Staff</a></li>
+                        <li><a href="{{route('adminuser.index')}}">Our Staff</a></li>
                         <li><a href="{{route('admin.role')}}">Role</a></li>
                         <li><a href="{{route('admin.permission')}}">Permission</a></li>
                     </ul>
