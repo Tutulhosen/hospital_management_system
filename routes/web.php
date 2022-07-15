@@ -60,6 +60,10 @@ Route::post('permission-update/{id}', [PermissionController::class, 'update'])->
 
 //admin role route
 Route::get('role', [RoleController::class, 'index'])->name('admin.role');
+Route::post('role', [RoleController::class, 'create'])->name('admin.role.create');
+Route::get('role-delete/{id}', [RoleController::class, 'destroy'])->name('admin.role.delete');
+Route::get('role-edit/{id}', [RoleController::class, 'edit'])->name('admin.role.edit');
+Route::post('role-update/{id}', [RoleController::class, 'update'])->name('admin.role.update');
 
 
 

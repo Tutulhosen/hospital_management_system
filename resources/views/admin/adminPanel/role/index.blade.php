@@ -32,9 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $role_data=[];
-                                @endphp
+                                
                                 @forelse ($role_data as $role)
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
@@ -54,8 +52,8 @@
                                     </td>
                                     <td>{{$role->created_at->diffForhumans()}}</td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning" href="{{ route('role.edit', $role->id) }}"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-sm btn-danger" href="{{ route('role.destroy', $role->id) }}"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-sm btn-warning" href="{{route('admin.role.edit', $role->id)}}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-sm btn-danger" href="{{route('admin.role.delete', $role->id)}}"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @empty
@@ -75,10 +73,8 @@
         
         
                     {{-- role index part  --}}
-                    @php
-                        $fun='role'
-                    @endphp
-                    @if ($fun==='role')
+                    
+                    @if ($form_type==='add')
         
                     <div class="card">
                         <div class="card-header">
@@ -91,7 +87,7 @@
                         <div class="card-body">
         
         
-                            <form action="" method="POST">
+                            <form action="{{route('admin.role.create')}}" method="POST">
                                 @csrf
         
                                 <div class="form-group">
@@ -128,7 +124,7 @@
         
                     {{-- role edit part  --}}
         
-                @if ($fun==='edit')
+                @if ($form_type==='edit')
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Edit Role</h4>
@@ -141,7 +137,7 @@
                     <div class="card-body">
         
                         @include('validate.validate')
-                        <form action="{{ route('role.update', $role_id->id) }}" method="POST">
+                        <form action="{{route('admin.role.update', $role_id->id)}}" method="POST">
                             @csrf
         
                             <div class="form-group">
