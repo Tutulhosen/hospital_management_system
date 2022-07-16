@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\admin\SpecialityController;
 use App\Http\Controllers\doctor\DoctorController;
 use App\Http\Controllers\frontend\loginController;
 use App\Http\Controllers\patient\PatientController;
@@ -75,7 +76,12 @@ Route::get('admin-profile', [ProfileController::class, 'ShowProfile'])->name('ad
 Route::post('admin-profile/{id}', [ProfileController::class, 'UploadPhoto'])->name('admin.photo.upload')->Middleware('admin');
 Route::post('admin-passwordChange/{id}', [ProfileController::class, 'changePassword'])->name('admin.password.change')->Middleware('admin');
 
-
+//speciality route
+Route::get('speciality', [SpecialityController::class, 'index'])->name('admin.speciality')->middleware('admin');
+Route::post('speciality', [SpecialityController::class, 'create'])->name('admin.speciality.create')->middleware('admin');
+Route::get('speciality-delete/{id}', [SpecialityController::class, 'destroy'])->name('admin.speciality.delete')->middleware('admin');
+Route::get('speciality-edit/{id}', [SpecialityController::class, 'edit'])->name('admin.speciality.edit')->middleware('admin');
+Route::post('speciality-edit/{id}', [SpecialityController::class, 'update'])->name('admin.speciality.update')->middleware('admin');
 
 /**
  * doctor route

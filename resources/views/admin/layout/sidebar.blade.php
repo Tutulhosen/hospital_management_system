@@ -16,7 +16,7 @@
                 </li>
                 @if (Auth::guard('doctor')->check()||Auth::guard('adminUser')->check())
                 <li> 
-                    <a href="specialities.html"><i class="fe fe-users"></i> <span>Specialities</span></a>
+                    <a href="{{route('admin.speciality')}}"><i class="fe fe-users"></i> <span>Specialities</span></a>
                 </li>
                 @endif
                 
