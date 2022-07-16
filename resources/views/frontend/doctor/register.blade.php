@@ -52,9 +52,7 @@
                     <option value="v">102</option>
                 </select>
                 </div>
-                <div class="text-right">
-                  <a class="forgot-link" href="{{route('home.login')}}">Already have an account?</a>
-                </div>
+                
                 <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
                 
                

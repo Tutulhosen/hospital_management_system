@@ -32,21 +32,21 @@
                             </thead>
                             <tbody>
                                
-                                @forelse ($speciality_data as $data)
+                                @forelse ($room_data as $data)
                                 <tr>
                                     <td>{{$loop->index+1}}</td>
                                     <td>{{ $data->name }}</td>
                                     <td>{{$data->slug}}</td>
                                     <td>{{$data->created_at->diffForHumans() }}</td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning" href="{{route('admin.speciality.edit', $data->id)}}"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-sm btn-danger" href="{{ route('admin.speciality.delete' , $data->id) }}"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-sm btn-warning" href="{{route('room.edit', $data->id)}}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-sm btn-danger" href="{{route('room.delete', $data->id)}}"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @empty
                                 <tr>
                                     <td colspan="5" class="text-center">
-                                        <p >No Speciality data found</p>
+                                        <p >No room  data found</p>
                                     </td>
                                 </tr>
                                 @endforelse
@@ -64,14 +64,14 @@
                 @if ($form_type==='add')
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Add New Speciality</h4>
+                        <h4 class="card-title">Add New Room</h4>
                     </div>
                     <div class="card-body">
 
-                        <form action="{{route('admin.speciality.create')}}" method="POST">
+                        <form action="{{route('room.create')}}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label>Speciality name</label>
+                                <label>Room name</label>
                                 <input name="name" type="text" class="form-control">
                             </div>
 
@@ -89,17 +89,17 @@
                 @if ($form_type==='edit')
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Edit Speciality</h4>
+                        <h4 class="card-title">Edit Room</h4>
                         <br>
-                        <a class="btn btn-sm btn-primary" href="{{ route('admin.speciality') }}">Add new Speciality</a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('admin.speciality') }}">Add new Room</a>
                     </div>
                     <div class="card-body">
 
-                        <form action="{{route('admin.speciality.update', $edit_data->id)}}" method="POST">
+                        <form action="{{route('room.update', $edit_id->id)}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Speciality name</label>
-                                <input name="name" type="text" class="form-control" value="{{ $edit_data->name }}">
+                                <input name="name" type="text" class="form-control" value="{{ $edit_id->name }}">
                             </div>
 
 

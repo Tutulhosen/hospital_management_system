@@ -19,9 +19,12 @@
                     <a href="{{route('admin.speciality')}}"><i class="fe fe-users"></i> <span>Specialities</span></a>
                 </li>
                 @endif
+                <li> 
+                    <a href="{{route('room.index')}}"><i class="fe fe-user"></i> <span>Room </span></a>
+                </li>
                 
                 <li> 
-                    <a href="doctor-list.html"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
+                    <a href="{{route('admin.doctor.index')}}"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
                 </li>
                 <li> 
                     <a href="patient-list.html"><i class="fe fe-user"></i> <span>Patients</span></a>

@@ -1,18 +1,22 @@
 <?php
 
+use GuzzleHttp\Middleware;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\admin\PermissionController;
-use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\SpecialityController;
+use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\AdminDoctorController;
+use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\doctor\DoctorController;
 use App\Http\Controllers\frontend\loginController;
 use App\Http\Controllers\patient\PatientController;
+use App\Http\Controllers\admin\PermissionController;
+use App\Http\Controllers\admin\RoomController;
+use App\Http\Controllers\admin\SpecialityController;
 use App\Http\Controllers\frontend\FrontendController;
-use GuzzleHttp\Middleware;
 use Symfony\Component\VarDumper\Caster\DoctrineCaster;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +86,16 @@ Route::post('speciality', [SpecialityController::class, 'create'])->name('admin.
 Route::get('speciality-delete/{id}', [SpecialityController::class, 'destroy'])->name('admin.speciality.delete')->middleware('admin');
 Route::get('speciality-edit/{id}', [SpecialityController::class, 'edit'])->name('admin.speciality.edit')->middleware('admin');
 Route::post('speciality-edit/{id}', [SpecialityController::class, 'update'])->name('admin.speciality.update')->middleware('admin');
+
+//room route
+Route::get('room', [RoomController::class, 'index'])->name('room.index')->middleware('admin');
+Route::post('room', [RoomController::class, 'create'])->name('room.create')->middleware('admin');
+Route::get('room-delete/{id}', [RoomController::class, 'destroy'])->name('room.delete')->middleware('admin');
+Route::get('room-edit/{id}', [RoomController::class, 'edit'])->name('room.edit')->middleware('admin');
+Route::post('room-update/{id}', [RoomController::class, 'update'])->name('room.update')->middleware('admin');
+
+//doctor route from admin panel
+Route::get('admin-doctor', [AdminDoctorController::class, 'index'])->name('admin.doctor.index')->middleware('admin');
 
 /**
  * doctor route
