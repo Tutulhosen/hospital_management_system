@@ -33,7 +33,7 @@
                     <a href=""><i class="fe fe-activity"></i> <span>Transactions</span></a>
                 </li>
                 <li> 
-                    <a href="settings.html"><i class="fe fe-vector"></i> <span>Settings</span></a>
+                    <a href="{{route('admin.profile')}}"><i class="fe fe-vector"></i> <span>Settings</span></a>
                 </li>
                 <li class="submenu">
                     <a href=""><i class="fe fe-document"></i> <span> Admin Panel</span> <span class="menu-arrow"></span></a>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\PermissionController;
+use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\doctor\DoctorController;
 use App\Http\Controllers\frontend\loginController;
@@ -46,7 +47,7 @@ Route::post('login', [loginController::class, 'logIn'])->name('user.login')->mid
 
 
 // some problem is unsolved in here
-Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index');
+Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index')->middleware('admin');
 Route::get('admin-login', [AdminController::class, 'login'])->name('admin.login')->middleware(['admin.redirect','doctor.redirect']);
 Route::post('admin-logedin', [AdminController::class, 'adminLogin'])->name('admin.logedin');
 Route::get('admin-user', [AdminController::class, 'showCreatePage'])->name('adminuser.index');
@@ -69,7 +70,10 @@ Route::get('role-delete/{id}', [RoleController::class, 'destroy'])->name('admin.
 Route::get('role-edit/{id}', [RoleController::class, 'edit'])->name('admin.role.edit');
 Route::post('role-update/{id}', [RoleController::class, 'update'])->name('admin.role.update');
 
-
+//admin user profile route
+Route::get('admin-profile', [ProfileController::class, 'ShowProfile'])->name('admin.profile')->Middleware('admin');
+Route::post('admin-profile/{id}', [ProfileController::class, 'UploadPhoto'])->name('admin.photo.upload')->Middleware('admin');
+Route::post('admin-passwordChange/{id}', [ProfileController::class, 'changePassword'])->name('admin.password.change')->Middleware('admin');
 
 
 

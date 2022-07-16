@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'cell'                  =>'01937793487',
             'username'              =>'Seper',
             'password'              =>Hash::make('123456789'),
-            'photo'                 =>'avator.png'
+            'photo'                 =>'avatar.png'
         ]);
     }
 }

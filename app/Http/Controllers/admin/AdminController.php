@@ -105,7 +105,8 @@ class AdminController extends Controller
             'cell'                     =>$request->cell,
             'username'                 =>$request->username,
             'role_id'                  =>$request->role,
-            'password'                 =>Hash::make('123456789')
+            'password'                 =>Hash::make('123456789'),
+            'photo'                    =>'avatar.png'
          ]);
          return back()->with('success', 'successfully add a user data');
       }
@@ -145,6 +146,7 @@ class AdminController extends Controller
          return redirect()->route('adminuser.index')->with('success-mid', 'Successfully update user data');
       }
 
+     
 
 
 
