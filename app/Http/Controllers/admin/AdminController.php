@@ -98,6 +98,7 @@ class AdminController extends Controller
             'email'                 =>'required|unique:admin_users',
             'cell'                  =>'required|unique:admin_users',
             'username'              =>'required|unique:admin_users',
+            
          ]);
          AdminUser::create([
             'name'                     =>$request->name,

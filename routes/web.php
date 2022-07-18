@@ -96,6 +96,11 @@ Route::post('room-update/{id}', [RoomController::class, 'update'])->name('room.u
 
 //doctor route from admin panel
 Route::get('admin-doctor', [AdminDoctorController::class, 'index'])->name('admin.doctor.index')->middleware('admin');
+Route::post('admin-doctor', [AdminDoctorController::class, 'create'])->name('admin.doctor.create')->middleware('admin');
+Route::get('admin-doctor-edit/{id}', [AdminDoctorController::class, 'edit'])->name('admin.doctor.edit')->middleware('admin');
+Route::post('admin-doctor-edit/{id}', [AdminDoctorController::class, 'update'])->name('admin.doctor.update')->middleware('admin');
+Route::get('admin-doctor-delete/{id}', [AdminDoctorController::class, 'destroy'])->name('admin.doctor.delete')->middleware('admin');
+
 
 /**
  * doctor route

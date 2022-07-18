@@ -27,29 +27,29 @@
                                     <td>Name</td>
                                     <td>Email</td>
                                     <td>Cell</td>
-                                    <td>Role</td>
-                                    <td>Created At</td>
+                                    <td>Speciality</td>
+                                    <td>Room</td>
+ 
                                  <td>Action</td>
                                 </tr>
                             </thead>
                             <tbody>
-                               @php
-                                   $admin_user_data=[];
-                               @endphp
+                               
         
-                                    @forelse ($admin_user_data as $admin_user)
+                                    @forelse ($doctor_data as $doctor)
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
-                                    <td>{{$admin_user->name}}</td>
-                                    <td>{{$admin_user->email}}</td>
-                                    <td>{{$admin_user->cell}}</td>
-                                    <td>{{$admin_user->role->name}}</td>
-                                    <td>{{$admin_user->created_at->diffForHumans() }}</td>
+                                    <td>{{$doctor->name}}</td>
+                                    <td>{{$doctor->email}}</td>
+                                    <td>{{$doctor->cell}}</td>
+                                    <td>{{$doctor->speciality}}</td>
+                                    <td>{{$doctor->room}}</td>
+
                                     <td>
-                                        @if ($admin_user->name != 'Super Admin' || $admin_user->email !='super@admin.com')
-                                        <a class="btn btn-sm btn-warning" href=""><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-sm btn-danger delete_btn" href=""><i class="fa fa-trash"></i></a>
-                                        @endif
+                                        
+                                        <a class="btn btn-sm btn-warning" href="{{route('admin.doctor.edit', $doctor->id)}}"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-sm btn-danger delete_btn" href="{{route('admin.doctor.delete', $doctor->id)}}"><i class="fa fa-trash"></i></a>
+                                        
         
                                     </td>
                                     @empty
@@ -72,9 +72,7 @@
         
             <div class="col-md-3">
         
-               @php
-                   $form_type='add';
-               @endphp
+              
         
                 {{-- admin user part  --}}
                 @if ($form_type==='add')
@@ -89,7 +87,7 @@
                     <div class="card-body">
         
         
-                        <form action="" method="POST">
+                        <form action="{{route('admin.doctor.create')}}" method="POST">
                             @csrf
                             <div class="form-group form-focus">
                                 <label class="focus-label">Name</label>
@@ -112,15 +110,32 @@
                                 <label class="focus-label">Speciality</label>
                                 <select class="form-control" name="speciality" id="">
                                   <option value="">--select--</option>
-                                  <option value="n">ffff</option>
+                                  @forelse ($speciality_data as $item)
+                                  <option value="{{$item->name}}">{{$item->name}}</option>
+                                  @empty
+                                  <tr>
+                                    <td colspan="8" class="text-center">
+                                        <p >No  data found</p>
+                                    </td>
+                                </tr>
+                                  @endforelse
+                                  
                               </select>
                               </div>
                               <div class="form-group form-focus">
                                 
                                 <label class="focus-label">Room No</label>
                                 <select class="form-control" name="room" id="">
-                                  <option value="">--select--</option>
-                                  <option value="v">102</option>
+                                    <option value="">--select--</option>
+                                    @forelse ($room_data as $item)
+                                    <option value="{{$item->name}}">{{$item->name}}</option>
+                                    @empty
+                                    <tr>
+                                      <td colspan="8" class="text-center">
+                                          <p >No  data found</p>
+                                      </td>
+                                  </tr>
+                                    @endforelse
                               </select>
                               </div>
                               
@@ -137,7 +152,7 @@
                 @if ($form_type==='edit')
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Edit User Data</h4>
+                        <h4 class="card-title">Edit Doctor Data</h4>
                     </div>
                     @if (Session::has('success')|| $errors->any())
                       @include('validate.validate')
@@ -146,35 +161,47 @@
                     <div class="card-body">
         
         
-                        <form action="{{route('admin.user.update', $edit_id->id)}}" method="POST">
+                        <form action="{{route('admin.doctor.update', $doctor_id->id)}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Name</label>
-                                <input value="{{ $edit_id->name }}" name="name" type="text" class="form-control">
+                                <input value="{{ $doctor_id->name }}" name="name" type="text" class="form-control">
                             </div>
         
                             <div class="form-group">
                                 <label>Email</label>
-                                <input value="{{ $edit_id->email }}" name="email" type="text" class="form-control">
+                                <input value="{{ $doctor_id->email }}" name="email" type="text" class="form-control">
                             </div>
         
-                            <div class="form-group">
-                                <label>User Name</label>
-                                <input value="{{ $edit_id->username }}" name="username" type="text" class="form-control">
-                            </div>
+                            
         
                             <div class="form-group">
                                 <label>Cell</label>
-                                <input value="{{ $edit_id->cell }}" name="cell" type="text" class="form-control">
+                                <input value="{{ $doctor_id->cell }}" name="cell" type="text" class="form-control">
                             </div>
         
                             <div class="form-group">
-                                <label>Role</label>
-                                <select class="form-control" name="role" id="">
+                                <label>Speciality</label>
+                                <select class="form-control" name="speciality" id="">
                                     <option value="">--select--</option>
-                                    @forelse ($role_data as $role)
-                                        <option @if ($role->id == $edit_id->role_id) selected
-                                        @endif value="{{$role->id}}">{{$role->name}}</option>
+                                    
+                                    @forelse ($speciality_data as $role)
+                                        <option @if ($role->name == $doctor_id->speciality) selected
+                                        @endif value="{{$role->name}}">{{$role->name}}</option>
+                                    @empty
+                                    <option>No Role data found</option>
+                                    @endforelse
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Room</label>
+                                <select class="form-control" name="room" id="">
+                                    <option value="">--select--</option>
+                                    
+                                    @forelse ($room_data as $role)
+                                        <option @if ($role->name == $doctor_id->room) selected
+                                        @endif value="{{$role->name}}">{{$role->name}}</option>
                                     @empty
                                     <option>No Role data found</option>
                                     @endforelse
