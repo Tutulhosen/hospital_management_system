@@ -108,6 +108,9 @@ Route::get('admin-doctor-delete/{id}', [AdminDoctorController::class, 'destroy']
 Route::get('doctor-reg', [DoctorController::class, 'showRegPage'])->name('doctor.register')->middleware('doctor.redirect');
 Route::post('doctor-reg', [DoctorController::class, 'doctorReg'])->name('register.doctor')->middleware('doctor.redirect');
 Route::get('doctor-logout', [loginController::class, 'logout'])->name('doctor.logout');
+Route::get('doctor-dashboard', [DoctorController::class, 'profilePage'])->name('doctor.profile')->middleware('doctor');
+Route::post('doctor-profile-photo,{id}', [DoctorController::class, 'profilePhoto'])->name('doctor.profile.photo')->middleware('doctor');
+Route::post('doctor-password-change,{id}', [DoctorController::class, 'passwordChange'])->name('doctor.password.change')->middleware('doctor');
 
 
 

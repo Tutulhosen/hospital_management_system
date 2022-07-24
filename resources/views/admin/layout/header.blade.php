@@ -109,12 +109,26 @@
         <!-- User Menu -->
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                @if (Auth::guard('adminUser')->check())
                 <span class="user-img"><img class="rounded-circle" src="{{ url('storage/admin/' . Auth::guard('adminUser')->user()->photo) }}" width="31" alt="Ryan Taylor"></span>
+                @endif
+                @if (Auth::guard('doctor')->check())
+                <span class="user-img"><img class="rounded-circle" src="{{ url('storage/doctor/' . Auth::guard('doctor')->user()->photo) }}" width="31" alt="Ryan Taylor"></span>
+                @endif
+                
             </a>
             <div class="dropdown-menu">
                 <div class="user-header">
                     <div class="avatar avatar-sm">
+                        @if (Auth::guard('adminUser')->check())
                         <img  src="{{ url('storage/admin/' . Auth::guard('adminUser')->user()->photo) }}" alt="User Image" class="avatar-img rounded-circle">
+                        @endif
+
+                        @if (Auth::guard('doctor')->check())
+                        <img  src="{{ url('storage/doctor/' . Auth::guard('doctor')->user()->photo) }}" alt="User Image" class="avatar-img rounded-circle">
+                        @endif
+                        
+                        
                     </div>
                     <div class="user-text">
                         @if (Auth::guard('doctor')->check())

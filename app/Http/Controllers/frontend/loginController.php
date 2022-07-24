@@ -22,7 +22,7 @@ class loginController extends Controller
         'email'         => $request->email,
         'password'      => $request->password,
        ])) {
-        return redirect()->route('admin.index');
+        return redirect()->route('doctor.profile');
        }elseif (Auth::guard('adminUser')->attempt([
         'email'         => $request->email,
         'password'      => $request->password,

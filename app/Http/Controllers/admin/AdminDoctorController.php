@@ -56,6 +56,7 @@ class AdminDoctorController extends Controller
             'password'                  =>Hash::make($request->password),
             'speciality'                =>$request->speciality,
             'room'                      =>$request->room,
+            'photo'                     =>'avatar.png'
         ]);
         return back()->with('success', 'successfully add a doctor data');
     }

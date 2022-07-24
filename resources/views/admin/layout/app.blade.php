@@ -40,7 +40,13 @@
 			
 			
 			<!-- Sidebar -->
-            @include('admin.layout.sidebar')
+            @if (Auth::guard('adminUser')->check())
+			@include('admin.layout.sidebar')
+			@endif
+
+			@if (Auth::guard('doctor')->check())
+			@include('admin.doctor.sidebar')
+			@endif
 			<!-- /Sidebar -->
 			
 			<!-- Page Wrapper -->
