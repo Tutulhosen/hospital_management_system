@@ -110,22 +110,44 @@
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 @if (Auth::guard('adminUser')->check())
+                @if (Auth::guard('adminUser')->user()->photo=='avatar.png')
+                <span class="user-img"><img class="rounded-circle" src="{{ url('avatar.png') }}" width="31" alt="Ryan Taylor"></span>
+                @else
                 <span class="user-img"><img class="rounded-circle" src="{{ url('storage/admin/' . Auth::guard('adminUser')->user()->photo) }}" width="31" alt="Ryan Taylor"></span>
                 @endif
+                
+                @endif
+
                 @if (Auth::guard('doctor')->check())
+                @if (Auth::guard('doctor')->user()->photo=='avatar.png')
+                <span class="user-img"><img class="rounded-circle" src="{{ url('avatar.png') }}" width="31" alt="Ryan Taylor"></span>
+                @else
                 <span class="user-img"><img class="rounded-circle" src="{{ url('storage/doctor/' . Auth::guard('doctor')->user()->photo) }}" width="31" alt="Ryan Taylor"></span>
                 @endif
+                
+                @endif
+                
                 
             </a>
             <div class="dropdown-menu">
                 <div class="user-header">
                     <div class="avatar avatar-sm">
                         @if (Auth::guard('adminUser')->check())
+                        @if (Auth::guard('adminUser')->user()->photo=='avatar.png')
+                        <img  src="{{ url('avatar.png') }}" alt="User Image" class="avatar-img rounded-circle">
+                        @else
                         <img  src="{{ url('storage/admin/' . Auth::guard('adminUser')->user()->photo) }}" alt="User Image" class="avatar-img rounded-circle">
+                        @endif
+                        
                         @endif
 
                         @if (Auth::guard('doctor')->check())
+                        @if (Auth::guard('doctor')->user()->photo=='avatar.png')
+                        <img  src="{{ url('avatar.png') }}" alt="User Image" class="avatar-img rounded-circle">
+                        @else
                         <img  src="{{ url('storage/doctor/' . Auth::guard('doctor')->user()->photo) }}" alt="User Image" class="avatar-img rounded-circle">
+                        @endif
+                        
                         @endif
                         
                         

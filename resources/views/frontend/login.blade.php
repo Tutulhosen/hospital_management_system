@@ -16,6 +16,7 @@
                                 <h3>Login <span style="color:aqua;">One</span><span>-Health</span></h3>
                             </div>
                             @include('validate.validate')
+                            
                             <form action="{{route('user.login')}}" method="POST">
                                 @csrf
                                 <div class="form-group form-focus">

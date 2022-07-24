@@ -41,7 +41,12 @@
                   <label class="focus-label">Speciality</label>
                   <select class="form-control" name="speciality" id="">
                     <option value="">--select--</option>
-                    <option value="n">ffff</option>
+                    @forelse ($speciality_data as $speciality)
+                    <option value="{{$speciality->name}}">{{$speciality->name}}</option>
+                    @empty
+                    <option value="">No Data Found</option>
+                    @endforelse
+                    
                 </select>
                 </div>
                 <div class="form-group form-focus">
@@ -49,7 +54,12 @@
                   <label class="focus-label">Room No</label>
                   <select class="form-control" name="room" id="">
                     <option value="">--select--</option>
-                    <option value="v">102</option>
+                    @forelse ($room_data as $room)
+                    <option value="{{$room->name}}">{{$room->name}}</option>
+                    @empty
+                    <option value="">No Data Found</option>
+                    @endforelse
+                    
                 </select>
                 </div>
                 

@@ -13,7 +13,8 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        return view('frontend.home');
+        $doctor_data= Doctor::latest()->get();
+        return view('frontend.home', compact('doctor_data'));
     }
 
 

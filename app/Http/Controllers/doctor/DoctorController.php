@@ -4,6 +4,8 @@ namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
+use App\Models\Room;
+use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +17,9 @@ class DoctorController extends Controller
      */
     public function showRegPage()
     {
-        return view('frontend.doctor.register');
+      $room_data= Room::latest()->get();
+      $speciality_data= Speciality::latest()->get();
+        return view('frontend.doctor.register', compact('room_data', 'speciality_data'));
     }
 
     /**
@@ -73,7 +77,7 @@ class DoctorController extends Controller
             $update_id->update([
                'photo'     => $file_name
             ]);
-            return back()->with('success', 'successfully upload your profile');
+            return back()->with('success', 'successfully upload your profile photo');
          } else {
             return back()->with('success=mid', 'select a photo first');
          }
@@ -97,9 +101,10 @@ class DoctorController extends Controller
             return back()->with('success-mid', 'Old password does no match');
         } else {
             $update_id->update([
-                'password'      =>$request->password,
+                'password'      =>Hash::make($request->password),
             ]);
-            return back()->with('success'. 'successfully change your password');
+            return back()->with('success', 'successfully  change your password');
+            
         }
         
        }
