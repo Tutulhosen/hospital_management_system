@@ -16,26 +16,26 @@
                 <h3>Patient Register </h3>
                 <a href="{{route('doctor.register')}}">Are you a Doctor?</a>
               </div>
-              
+              @include('validate.validate')
               <!-- Register Form -->
-              <form action="" method="POST">
+              <form action="{{route('patient.register')}}" method="POST">
                 @csrf
                 <div class="form-group form-focus">
-                  <input name="name" type="text" class="form-control floating">
                   <label class="focus-label">Name</label>
+                  <input name="name" type="text" value="{{old('name')}}" class="form-control floating">
                 </div>
                 <div class="form-group form-focus">
-                  <input name="cell" type="text" class="form-control floating">
                   <label class="focus-label">Mobile Number</label>
+                  <input name="cell" type="text" value="{{old('cell')}}" class="form-control floating">
                 </div>
                 <div class="form-group form-focus">
-                  <input name="email" type="text" class="form-control floating">
                   <label class="focus-label">Your Email</label>
+                  <input name="email" type="text" value="{{old('email')}} "class="form-control floating">
                 </div>
 
                 <div class="form-group form-focus">
-                  <input type="password" class="form-control floating">
                   <label class="focus-label">Create Password</label>
+                  <input name="password" type="password" class="form-control floating">
                 </div>
                 
                 <div class="text-right">

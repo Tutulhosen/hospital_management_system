@@ -36,6 +36,7 @@ use Symfony\Component\VarDumper\Caster\DoctrineCaster;
  * 
  */
 Route::get('/',[FrontendController::class, 'index'])->name('home.index');
+Route::post('/',[FrontendController::class, 'appoinmentCreate'])->name('home.appoinment.create');
 Route::get('login',[FrontendController::class, 'login'])->name('home.login')->middleware(['doctor.redirect','admin.redirect']);
 Route::post('login', [loginController::class, 'logIn'])->name('user.login')->middleware('doctor.redirect');
 
@@ -118,4 +119,4 @@ Route::post('doctor-password-change,{id}', [DoctorController::class, 'passwordCh
  * patient route
  */
 Route::get('patient-reg', [PatientController::class, 'showRegPage'])->name('patient.reg');
-// Route::post('patient-register', [PatientController::class, 'patientReg'])->name('patient.register');
+Route::post('patient-register', [PatientController::class, 'patientReg'])->name('patient.register');
