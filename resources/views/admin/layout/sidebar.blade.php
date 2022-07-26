@@ -12,7 +12,7 @@
                 @endif
                 
                 <li> 
-                    <a href="appointment-list.html"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+                    <a href="{{route('admin.appoinment.index')}}"><i class="fe fe-layout"></i> <span>Appointments</span></a>
                 </li>
                 @if (Auth::guard('doctor')->check()||Auth::guard('adminUser')->check())
                 <li> 
@@ -27,7 +27,7 @@
                     <a href="{{route('admin.doctor.index')}}"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
                 </li>
                 <li> 
-                    <a href="patient-list.html"><i class="fe fe-user"></i> <span>Patients</span></a>
+                    <a href="{{route('admin.patient.index')}}"><i class="fe fe-user"></i> <span>Patients</span></a>
                 </li>
                 <li> 
                     <a href=""><i class="fe fe-star-o"></i> <span>Reviews</span></a>

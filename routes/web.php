@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminDoctorController;
+use App\Http\Controllers\Admin\AdminPatientController;
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\doctor\DoctorController;
 use App\Http\Controllers\frontend\loginController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\patient\PatientController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\admin\SpecialityController;
+use App\Http\Controllers\Appoinment\AppoinmentController;
 use App\Http\Controllers\frontend\FrontendController;
 use Symfony\Component\VarDumper\Caster\DoctrineCaster;
 
@@ -52,7 +54,6 @@ Route::post('login', [loginController::class, 'logIn'])->name('user.login')->mid
  */
 
 
-// some problem is unsolved in here
 Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index')->middleware('admin');
 Route::get('admin-login', [AdminController::class, 'login'])->name('admin.login')->middleware(['admin.redirect','doctor.redirect']);
 Route::post('admin-login', [AdminController::class, 'adminLogin'])->name('admin.logedin');
@@ -95,6 +96,12 @@ Route::get('room-delete/{id}', [RoomController::class, 'destroy'])->name('room.d
 Route::get('room-edit/{id}', [RoomController::class, 'edit'])->name('room.edit')->middleware('admin');
 Route::post('room-update/{id}', [RoomController::class, 'update'])->name('room.update')->middleware('admin');
 
+//appoinment route from admin panel
+Route::get('appoinment', [AppoinmentController::class, 'index'])->name('admin.appoinment.index');
+Route::get('appoinment-reject/{id}', [AppoinmentController::class, 'RejectAppoinment'])->name('admin.appoinment.reject');
+Route::get('appoinment-delete/{id}', [AppoinmentController::class, 'DeleteAppoinment'])->name('admin.appoinment.delete');
+Route::get('appoinment-accrpt/{id}', [AppoinmentController::class, 'AcceptAppoinment'])->name('admin.appoinment.accept');
+
 //doctor route from admin panel
 Route::get('admin-doctor', [AdminDoctorController::class, 'index'])->name('admin.doctor.index')->middleware('admin');
 Route::post('admin-doctor', [AdminDoctorController::class, 'create'])->name('admin.doctor.create')->middleware('admin');
@@ -102,6 +109,12 @@ Route::get('admin-doctor-edit/{id}', [AdminDoctorController::class, 'edit'])->na
 Route::post('admin-doctor-edit/{id}', [AdminDoctorController::class, 'update'])->name('admin.doctor.update')->middleware('admin');
 Route::get('admin-doctor-delete/{id}', [AdminDoctorController::class, 'destroy'])->name('admin.doctor.delete')->middleware('admin');
 
+//patient route from admin panel
+Route::get('admin-patient', [AdminPatientController::class, 'AdminPatientIndex'])->name('admin.patient.index');
+Route::post('admin-patient-create', [AdminPatientController::class, 'AdminPatientCreate'])->name('admin.patient.create');
+Route::get('admin-patient-delete/{id}', [AdminPatientController::class, 'AdminPatientDelete'])->name('admin.patient.delete');
+Route::get('admin-patient-edit/{id}', [AdminPatientController::class, 'AdminPatientEdit'])->name('admin.patient.edit');
+Route::post('admin-patient-update/{id}', [AdminPatientController::class, 'AdminPatientUpdate'])->name('admin.patient.update');
 
 /**
  * doctor route

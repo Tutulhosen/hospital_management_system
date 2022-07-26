@@ -10,10 +10,10 @@
         @include('admin.layout.page-header')
         <!-- /Page Header -->
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">All Doctor</h4>
+                        <h4 class="card-title">All Appoinment</h4>
                     </div>
                     @if (Session::has('success-mid'))
                     @include('validate.validate')
@@ -27,8 +27,9 @@
                                     <td>Name</td>
                                     <td>Email</td>
                                     <td>Cell</td>
-                                    <td>Speciality</td>
-                                    <td>Room</td>
+                                    <td>date</td>
+                                    <td>doctor</td>
+                                    <td>status</td>
  
                                  <td>Action</td>
                                 </tr>
@@ -36,19 +37,33 @@
                             <tbody>
                                
         
-                                    @forelse ($doctor_data as $doctor)
+                                    @forelse ($appoinment_data as $appoinment)
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
-                                    <td>{{$doctor->name}}</td>
-                                    <td>{{$doctor->email}}</td>
-                                    <td>{{$doctor->cell}}</td>
-                                    <td>{{$doctor->speciality}}</td>
-                                    <td>{{$doctor->room}}</td>
-
+                                    <td>{{$appoinment->name}}</td>
+                                    <td>{{$appoinment->email}}</td>
+                                    <td>{{$appoinment->cell}}</td>
+                                    <td>{{$appoinment->date}}</td>
+                                    <td>{{$appoinment->doctor}}</td>
+                                    @if ($appoinment->status=='cancel')
+                                    <td class="badge rounded-pill bg-danger text-black">{{$appoinment->status}}</td>
+                                    @endif
+                                    @if ($appoinment->status=='On Schedule')
+                                    <td class="badge rounded-pill bg-primary">{{$appoinment->status}}</td>
+                                    @endif
+                                    @if ($appoinment->status=='Done')
+                                    <td class="badge rounded-pill bg-success">{{$appoinment->status}}</td>
+                                    @endif
                                     <td>
+                                        @if ($appoinment->status=='cancel')
+                                        <a class="btn btn-sm btn-danger" href="{{route('admin.appoinment.delete', $appoinment->id)}}">Delete</a>
+                                        @endif
+                                        @if ($appoinment->status =='In Progress')
+                                        <a class="btn btn-sm btn-success" href="{{route('admin.appoinment.accept', $appoinment->id)}}">Accepted</a>
+                                        <a class="btn btn-sm btn-danger " href="{{route('admin.appoinment.reject', $appoinment->id)}}">Rejected</i></a>
+                                        @endif
+
                                         
-                                        <a class="btn btn-sm btn-warning" href="{{route('admin.doctor.edit', $doctor->id)}}"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-sm btn-danger delete_btn" href="{{route('admin.doctor.delete', $doctor->id)}}"><i class="fa fa-trash"></i></a>
                                         
         
                                     </td>
