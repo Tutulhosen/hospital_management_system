@@ -21,9 +21,8 @@ return new class extends Migration
             $table->string('cell');
             $table->string('date');
             $table->string('doctor');
-            $table->string('photo')->nullable();
             $table->string('message')->nullable();
-            $table->boolean('status')->default(true);
+            $table->string('status')->nullable();
             $table->boolean('trash')->default(false);
             $table->timestamps();
         });

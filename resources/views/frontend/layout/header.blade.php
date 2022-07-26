@@ -55,12 +55,23 @@
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
             </li>
+            @if (Auth::guard('patient')->check())
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('patient.appoinment')}}">Your Appoinment</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-primary ml-lg-3" href="{{route('doctor.logout')}}">Logout </a>
+            </li>
+            @endif
+            @if (Auth::guard('patient')->check()==false)
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-3" href="{{route('home.login')}}">Login </a>
             </li>
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-3" href="{{route('patient.reg')}}">Register</a>
             </li>
+            @endif
+            
           </ul>
         </div> <!-- .navbar-collapse -->
       </div> <!-- .container -->

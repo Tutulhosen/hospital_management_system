@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'admin_users',
         ],
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
     ],
 
     /*
@@ -80,6 +84,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\AdminUser::class,
         ],
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
+        ],
+        
 
         // 'users' => [
         //     'driver' => 'database',

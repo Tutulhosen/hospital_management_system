@@ -28,6 +28,12 @@ class loginController extends Controller
         'password'      => $request->password,
        ])) {
         return redirect()->route('admin.index');
+       }elseif (Auth::guard('patient')->attempt([
+        'email'         => $request->email,
+        'password'      => $request->password,
+       ])) {
+
+        return redirect()->route('home.index');
        } else {
         return back()->with('success-mid', 'Wrong email or password');
 
@@ -43,8 +49,13 @@ class loginController extends Controller
     if (Auth::guard('doctor')->check()) {
         Auth::guard('doctor')->logout();
     }
+
     if (Auth::guard('adminUser')->check()) {
         Auth::guard('adminUser')->logout();
+    }
+
+    if (Auth::guard('patient')->check()) {
+        Auth::guard('patient')->logout();
     }
     return redirect()->route('home.login');
    }

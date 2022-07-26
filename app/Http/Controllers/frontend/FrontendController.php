@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Appoinment;
 use App\Models\Doctor;
+use App\Models\Appoinment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
@@ -43,17 +44,30 @@ class FrontendController extends Controller
             'doctor'            =>'required',
             'date'              =>'required',
         ]);
-        Appoinment::create([
-            'name'                  =>$request->name,
-            'email'                 =>$request->email,
-            'cell'                  =>$request->cell,
-            'doctor'                =>$request->doctor,
-            'date'                  =>$request->date,
-            'message'               =>$request->message,
-            
-            
-            
-        ]);
+        if (Auth::guard('patient')->check()==false) {
+            Appoinment::create([
+                'name'                  =>$request->name,
+                'email'                 =>$request->email,
+                'cell'                  =>$request->cell,
+                'doctor'                =>$request->doctor,
+                'date'                  =>$request->date,
+                'message'               =>$request->message, 
+                'status'                =>'In Progress' ,         
+            ]);
+        }
+        
+        if (Auth::guard('patient')->check()) {
+            Appoinment::create([
+                'name'                  =>$request->name,
+                'email'                 =>$request->email,
+                'cell'                  =>$request->cell,
+                'doctor'                =>$request->doctor,
+                'date'                  =>$request->date,
+                'message'               =>$request->message, 
+                'status'                =>'In Progress',
+                'user_id'               =>Auth::guard('patient')->user()->id,          
+            ]);
+        }
         return back()->with('success', 'Successfully submit your appoinment');
     }
 

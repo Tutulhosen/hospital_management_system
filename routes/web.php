@@ -37,7 +37,7 @@ use Symfony\Component\VarDumper\Caster\DoctrineCaster;
  */
 Route::get('/',[FrontendController::class, 'index'])->name('home.index');
 Route::post('/',[FrontendController::class, 'appoinmentCreate'])->name('home.appoinment.create');
-Route::get('login',[FrontendController::class, 'login'])->name('home.login')->middleware(['doctor.redirect','admin.redirect']);
+Route::get('login',[FrontendController::class, 'login'])->name('home.login')->middleware(['doctor.redirect','patient.redirect']);
 Route::post('login', [loginController::class, 'logIn'])->name('user.login')->middleware('doctor.redirect');
 
 
@@ -55,7 +55,7 @@ Route::post('login', [loginController::class, 'logIn'])->name('user.login')->mid
 // some problem is unsolved in here
 Route::get('admin-dashboard', [AdminController::class, 'index'])->name('admin.index')->middleware('admin');
 Route::get('admin-login', [AdminController::class, 'login'])->name('admin.login')->middleware(['admin.redirect','doctor.redirect']);
-Route::post('admin-logedin', [AdminController::class, 'adminLogin'])->name('admin.logedin');
+Route::post('admin-login', [AdminController::class, 'adminLogin'])->name('admin.logedin');
 Route::get('admin-user', [AdminController::class, 'showCreatePage'])->name('adminuser.index');
 Route::post('admin-user', [AdminController::class, 'create'])->name('admin.user.create');
 Route::get('admin-user-delete/{id}', [AdminController::class, 'destroy'])->name('admin.user.delete');
@@ -120,3 +120,9 @@ Route::post('doctor-password-change,{id}', [DoctorController::class, 'passwordCh
  */
 Route::get('patient-reg', [PatientController::class, 'showRegPage'])->name('patient.reg');
 Route::post('patient-register', [PatientController::class, 'patientReg'])->name('patient.register');
+Route::get('patient-appointment', [PatientController::class, 'patientAppoinment'])->name('patient.appoinment');
+Route::get('patient-appointment-create', [PatientController::class, 'patientAppoinmentCreatePage'])->name('patient.appoinment.create.index');
+Route::post('patient-appointment-create', [PatientController::class, 'patientAppoinmentCreate'])->name('patient.appoinment.create');
+Route::get('patient-appointment-delete/{id}', [PatientController::class, 'patientAppoinmentDelete'])->name('patient.appoinment.delete');
+Route::get('patient-appointment-edit/{id}', [PatientController::class, 'patientAppoinmentedit'])->name('patient.appoinment.edit');
+Route::post('patient-appointment-update/{id}', [PatientController::class, 'patientAppoinmentupdate'])->name('patient.appoinment.update');

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Middleware\admin;
+namespace App\Http\Middleware\patient;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class PatientRedirectMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class AdminMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {   
-        if (Auth::guard('adminUser')->check()) {
-            return $next($request);
+    {
+        if (Auth::guard('patient')->check()) {
+            return redirect()->route('home.index');
         } else {
-           return redirect()->route('admin.login');
+            return $next($request);
         }
         
         

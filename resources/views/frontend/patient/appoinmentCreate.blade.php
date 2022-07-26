@@ -1,9 +1,12 @@
+@extends('frontend.layout.app')
+@section('main-content')
+<br><br>
 <div class="page-section">
     <div class="container">
       <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
       @include('validate.validate')
 
-      <form class="main-form" action="{{route('home.appoinment.create')}}" method="POST">
+      <form class="main-form" action="{{route('patient.appoinment.create')}}" method="POST">
         @csrf
         <div class="row mt-5 ">
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
@@ -17,13 +20,14 @@
             @endif name="email" type="text" class="form-control" placeholder="Email address..">
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
-            <input name="date" type="date" class="form-control">
+            <input  name="date" type="date" class="form-control">
           </div>
           <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
             <select name="doctor" id="doctor" class="custom-select">
               <option value="general">--select doctor--</option>
+             
               @forelse ($doctor_data as $doctor)
-              <option value="{{$doctor->name}}">{{$doctor->name}} --speciality-- {{$doctor->speciality}}</option>
+              <option   value="{{$doctor->name}}">{{$doctor->name}} --speciality-- {{$doctor->speciality}}</option>
               @empty
               <option >No data found</option>
               @endforelse
@@ -45,3 +49,4 @@
       </form>
     </div>
   </div>
+@endsection

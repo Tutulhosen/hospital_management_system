@@ -67,6 +67,8 @@ class Kernel extends HttpKernel
         'doctor.redirect' =>\App\Http\Middleware\doctor\doctorRedirectMiddleware::class,
         'admin'     =>\App\Http\Middleware\admin\AdminMiddleware::class,
         'admin.redirect'    =>\App\Http\Middleware\admin\AdminRedirectMiddleware::class,
+        'patient'    =>\App\Http\Middleware\patient\PatientMiddleware::class,
+        'patient.redirect'    =>\App\Http\Middleware\patient\PatientRedirectMiddleware::class,
 
     ];
 }
