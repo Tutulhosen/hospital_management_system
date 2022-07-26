@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\doctor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appoinment;
 use App\Models\Doctor;
 use App\Models\Room;
 use App\Models\Speciality;
@@ -108,6 +109,27 @@ class DoctorController extends Controller
         }
         
        }
+
+       /**
+        * All appoinment for a doctor
+        */
+        public function DoctorAppoinment()
+        {
+         $appoinment_data= Appoinment::latest()->get();
+         return view('admin.doctor.appoinment', compact('appoinment_data'));
+        }
+
+        /**
+         * complete a appoinment
+         */
+        public function AppoinmentComplete($id)
+        {
+         $appoinment_id= Appoinment::findOrFail($id);
+         $appoinment_id->update([
+            'status'    =>'Done',
+         ]);
+         return back();
+        }
     
 
 

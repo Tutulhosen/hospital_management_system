@@ -123,8 +123,10 @@ Route::get('doctor-reg', [DoctorController::class, 'showRegPage'])->name('doctor
 Route::post('doctor-reg', [DoctorController::class, 'doctorReg'])->name('register.doctor')->middleware('doctor.redirect');
 Route::get('doctor-logout', [loginController::class, 'logout'])->name('doctor.logout');
 Route::get('doctor-dashboard', [DoctorController::class, 'profilePage'])->name('doctor.profile')->middleware('doctor');
-Route::post('doctor-profile-photo,{id}', [DoctorController::class, 'profilePhoto'])->name('doctor.profile.photo')->middleware('doctor');
-Route::post('doctor-password-change,{id}', [DoctorController::class, 'passwordChange'])->name('doctor.password.change')->middleware('doctor');
+Route::post('doctor-profile-photo/{id}', [DoctorController::class, 'profilePhoto'])->name('doctor.profile.photo')->middleware('doctor');
+Route::post('doctor-password-change/{id}', [DoctorController::class, 'passwordChange'])->name('doctor.password.change')->middleware('doctor');
+Route::get('doctor-appoinment', [DoctorController::class, 'DoctorAppoinment'])->name('doctor.appoinment')->middleware('doctor');
+Route::get('doctor-appoinment-complete/{id}', [DoctorController::class, 'AppoinmentComplete'])->name('doctor.appoinment.complete')->middleware('doctor');
 
 
 

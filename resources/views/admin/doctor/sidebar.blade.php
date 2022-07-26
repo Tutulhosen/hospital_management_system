@@ -26,7 +26,7 @@
                 
                 @if (Auth::guard('doctor')->check())
                 <li> 
-                    <a href=""><i class="fe fe-layout"></i> <span>Appointments</span></a>
+                    <a href="{{route('doctor.appoinment')}}"><i class="fe fe-layout"></i> <span>Appointments</span></a>
                 </li>
                 @endif
                 
