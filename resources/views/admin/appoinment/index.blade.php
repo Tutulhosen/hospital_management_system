@@ -54,6 +54,9 @@
                                     @if ($appoinment->status=='Done')
                                     <td class="badge rounded-pill bg-success">{{$appoinment->status}}</td>
                                     @endif
+                                    @if ($appoinment->status=='In Progress')
+                                    <td class="badge rounded-pill bg-warning">{{$appoinment->status}}</td>
+                                    @endif
                                     <td>
                                         @if ($appoinment->status=='cancel')
                                         <a class="btn btn-sm btn-danger" href="{{route('admin.appoinment.delete', $appoinment->id)}}">Delete</a>

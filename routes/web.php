@@ -127,6 +127,7 @@ Route::post('doctor-profile-photo/{id}', [DoctorController::class, 'profilePhoto
 Route::post('doctor-password-change/{id}', [DoctorController::class, 'passwordChange'])->name('doctor.password.change')->middleware('doctor');
 Route::get('doctor-appoinment', [DoctorController::class, 'DoctorAppoinment'])->name('doctor.appoinment')->middleware('doctor');
 Route::get('doctor-appoinment-complete/{id}', [DoctorController::class, 'AppoinmentComplete'])->name('doctor.appoinment.complete')->middleware('doctor');
+Route::get('doctor-patient-list', [DoctorController::class, 'DoctorPatient'])->name('doctor.patient')->middleware('doctor');
 
 
 

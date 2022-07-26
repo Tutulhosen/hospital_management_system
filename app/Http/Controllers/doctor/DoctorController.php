@@ -130,6 +130,15 @@ class DoctorController extends Controller
          ]);
          return back();
         }
+
+        /**
+         * patient list for a doctor
+         */
+        public function DoctorPatient()
+        {
+         $appoinment_data= Appoinment::latest()->get();
+         return view('admin.doctor.patient', compact('appoinment_data'));
+        }
     
 
 
