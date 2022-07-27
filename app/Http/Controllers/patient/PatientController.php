@@ -131,6 +131,16 @@ class PatientController extends Controller
     }
 
 
+    /**
+     * patient logout
+     */
+    public function LogOut()
+    {
+        Auth::guard('patient')->logout();
+        return redirect()->route('home.index');
+    }
+
+
 
 
 

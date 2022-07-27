@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+use function Ramsey\Uuid\v1;
+
 class FrontendController extends Controller
 {
     /**
@@ -69,6 +71,15 @@ class FrontendController extends Controller
             ]);
         }
         return back()->with('success', 'Successfully submit your appoinment');
+    }
+
+
+    /**
+     * show the documentation page
+     */
+    public function document()
+    {
+        return view('frontend.documentation');
     }
 
 

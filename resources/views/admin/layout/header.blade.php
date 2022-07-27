@@ -167,7 +167,14 @@
                 
                 <a class="dropdown-item" href="{{route('admin.profile')}}">My Profile</a>
                 <a class="dropdown-item" href="{{route('admin.profile')}}">Settings</a>
+                @if (Auth::guard('adminUser')->check())
+                <a class="dropdown-item" href="{{route('adminuser.logout')}}">Logout</a>
+                @endif
+
+                @if (Auth::guard('doctor')->check())
                 <a class="dropdown-item" href="{{route('doctor.logout')}}">Logout</a>
+                @endif
+
             </div>
         </li>
         <!-- /User Menu -->

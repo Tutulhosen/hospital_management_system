@@ -10,7 +10,7 @@
                 <div class="login-right">
                     <div class="login-right-wrap">
                         <h1>Login</h1>
-                        <p class="account-subtitle">Access to our dashboard</p>
+                        <p class="account-subtitle">Access to admin dashboard</p>
                         @include('validate.validate')
                         
                         <!-- Form -->

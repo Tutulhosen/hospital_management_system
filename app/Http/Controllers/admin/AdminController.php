@@ -60,7 +60,7 @@ class AdminController extends Controller
       public function Logout()
       {
          Auth::guard('adminUser')->logout();
-         return redirect()->route('admin.login');
+         return redirect()->route('home.index');
       }
 
 
@@ -146,6 +146,7 @@ class AdminController extends Controller
          ]);
          return redirect()->route('adminuser.index')->with('success-mid', 'Successfully update user data');
       }
+
 
      
 

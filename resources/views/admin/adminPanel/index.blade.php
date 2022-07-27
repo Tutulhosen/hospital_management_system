@@ -27,7 +27,7 @@
                                     <td>Name</td>
                                     <td>Email</td>
                                     <td>Cell</td>
-                                    {{-- <td>Role</td> --}}
+                                    <td>Role</td>
                                     <td>Created At</td>
                                  <td>Action</td>
                                 </tr>
@@ -41,7 +41,7 @@
                                     <td>{{$admin_user->name}}</td>
                                     <td>{{$admin_user->email}}</td>
                                     <td>{{$admin_user->cell}}</td>
-                                    {{-- <td>{{$admin_user->role->name}}</td> --}}
+                                    <td>{{$admin_user->role->name}}</td>
                                     <td>{{$admin_user->created_at->diffForHumans() }}</td>
                                     <td>
                                         @if ($admin_user->name != 'Super Admin' || $admin_user->email !='super@admin.com')

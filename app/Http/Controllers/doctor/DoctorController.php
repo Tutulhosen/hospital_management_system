@@ -139,6 +139,16 @@ class DoctorController extends Controller
          $appoinment_data= Appoinment::latest()->get();
          return view('admin.doctor.patient', compact('appoinment_data'));
         }
+
+
+        /**
+         * doctor logout
+         */
+        public function logout()
+        {
+         Auth::guard('doctor')->logout();
+         return redirect()->route('home.index');
+        }
     
 
 

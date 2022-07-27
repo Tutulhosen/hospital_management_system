@@ -41,6 +41,9 @@
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
+              <a class="nav-link btn btn-dark" href="{{route('document.index')}}">Documentation</a>
+            </li>
+            <li class="nav-item ">
               <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
@@ -60,7 +63,7 @@
               <a class="nav-link" href="{{route('patient.appoinment')}}">Your Appoinment</a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-primary ml-lg-3" href="{{route('doctor.logout')}}">Logout </a>
+              <a class="btn btn-primary ml-lg-3" href="{{route('patient.logout')}}">Logout </a>
             </li>
             @endif
             @if (Auth::guard('patient')->check()==false)

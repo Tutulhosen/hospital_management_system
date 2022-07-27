@@ -19,7 +19,7 @@ class doctorRedirectMiddleware
     {
         
         if (Auth::guard('doctor')->check()) {
-            return redirect()->route('admin.index');
+            return redirect()->route('doctor.profile');
         } else {
             return $next($request);
         }

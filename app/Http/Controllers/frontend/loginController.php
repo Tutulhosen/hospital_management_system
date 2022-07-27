@@ -41,24 +41,7 @@ class loginController extends Controller
        
     }
 
- /**
-     * admin logout system
-     */
-   public function logout()
-   {
-    if (Auth::guard('doctor')->check()) {
-        Auth::guard('doctor')->logout();
-    }
 
-    if (Auth::guard('adminUser')->check()) {
-        Auth::guard('adminUser')->logout();
-    }
-
-    if (Auth::guard('patient')->check()) {
-        Auth::guard('patient')->logout();
-    }
-    return redirect()->route('home.login');
-   }
 
 
 
