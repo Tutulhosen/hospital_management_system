@@ -6,6 +6,8 @@ use App\Models\Doctor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AdminUser;
+use App\Models\Appoinment;
+use App\Models\Patient;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,8 +20,11 @@ class AdminController extends Controller
 
      public function index()
      {
+      $doctor_data= Doctor::latest()->get();
+      $patient_data=Patient::latest()->get();
+      $appoinment_data= Appoinment::latest()->get();
 
-        return view('admin.index');
+        return view('admin.index', compact('doctor_data', 'patient_data', 'appoinment_data'));
      }
 
      /**
